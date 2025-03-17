@@ -33,12 +33,49 @@ void main() async {
   // Set the user's preferred theme.
   await client.setTheme(ThemeMode.dark);
 
-  // Add a favorite source.
-  await client.addFavoriteSource('source_id');
+  // Get the user's preferred headline article text size.
+  final headlineArticleTextSize = await client.getHeadlineArticleTextSize();
+  print('Headline article text size: $headlineArticleTextSize');
 
-  // Get the user's favorite category IDs
-  final categories = await client.getFavoriteCategoryIds();
-  print('Favorite categories: $categories');
+  // Set the user's preferred headline article text size.
+  await client.setHeadlineArticleTextSize(HeadlineArticleTextSize.large);
+
+  // Get the user's preferred app font size.
+  final appFontSize = await client.getAppFontSize();
+  print('App font size: $appFontSize');
+
+  // Set the user's preferred app font size.
+  await client.setAppFontSize(AppFontSize.large);
+
+  // Add a followed source.
+  await client.addFollowedSource('source_id');
+
+  // Get the user's followed category IDs
+  final categories = await client.getFollowedCategoryIds();
+  print('Followed categories: $categories');
+
+  // Add a saved headline.
+  await client.addSavedHeadline('headline_id');
+
+  // Get the user's saved headlines.
+  final savedHeadlines = await client.getSavedHeadlines();
+  print('Saved headlines: $savedHeadlines');
+
+  // Remove all followed sources.
+  await client.removeAllFollowedSourceIds();
+
+  // Remove all followed categories.
+  await client.removeAllFollowedCategoryIds();
+
+  // Remove all followed event countries.
+  await client.removeAllFollowedEventCountryIds();
+
+  // Get the user's preferred content density.
+  final contentDensity = await client.getContentDensity();
+  print('Content density: $contentDensity');
+
+  // Set the user's preferred content density.
+  await client.setContentDensity(ContentDensity.compact);
 }
 
 ```
@@ -47,9 +84,13 @@ void main() async {
 
 *   Get and set user's preferred language.
 *   Get and set user's preferred theme (light, dark, system).
-*   Manage a list of favorite news source IDs.
-*   Manage a list of favorite news category IDs.
-*   Manage a list of favorite event country IDs.
+*   Get and set user's preferred headline article text size (small, medium, large).
+*   Get and set user's preferred app font size (small, medium, large).
+*   Manage a list of followed news source IDs.
+*   Manage a list of followed news category IDs.
+*   Manage a list of followed event country IDs.
+*   Manage a list of saved headlines (serialized strings).
+*   Get and set user's preferred content density (compact, comfortable).
 
 ## Issues
 
