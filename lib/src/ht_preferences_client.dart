@@ -39,21 +39,21 @@ abstract class HtPreferencesClient {
   /// storing the theme.
   Future<void> setTheme(ThemeMode theme);
 
-  /// Gets the user's favorite news sources.
+  /// Gets the user's favorite news source IDs.
   ///
   /// Returns a list of source IDs.
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
-  /// retrieving the favorite sources.
-  Future<List<String>> getFavoriteSources();
+  /// retrieving the favorite source IDs.
+  Future<List<String>> getFavoriteSourceIds();
 
-  /// Sets the user's favorite news sources.
+  /// Sets the user's favorite news source IDs.
   ///
   /// [sources] is a list of source IDs.
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
-  /// storing the favorite sources.
-  Future<void> setFavoriteSources(List<String> sources);
+  /// storing the favorite source IDs.
+  Future<void> setFavoriteSourceIds(List<String> sources);
 
   /// Adds a news source to the user's favorites.
   ///
@@ -73,21 +73,21 @@ abstract class HtPreferencesClient {
   /// removing the source.
   Future<void> removeFavoriteSource(String source);
 
-  /// Gets the user's favorite categories.
+  /// Gets the user's favorite category IDs.
   ///
   /// Returns a list of category IDs.
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
-  /// retrieving the favorite categories.
-  Future<List<String>> getFavoriteCategories();
+  /// retrieving the favorite category IDs.
+  Future<List<String>> getFavoriteCategoryIds();
 
-  /// Sets the user's favorite categories.
+  /// Sets the user's favorite category IDs.
   ///
   /// [categories] is a list of category IDs.
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
-  /// storing the favorite categories.
-  Future<void> setFavoriteCategories(List<String> categories);
+  /// storing the favorite category IDs.
+  Future<void> setFavoriteCategoryIds(List<String> categories);
 
   /// Adds a category to the user's favorites.
   ///
@@ -107,21 +107,21 @@ abstract class HtPreferencesClient {
   /// removing the category.
   Future<void> removeFavoriteCategory(String category);
 
-  /// Gets the user's favorite event countries.
+  /// Gets the user's favorite event country IDs.
   ///
   /// Returns a list of country IDs.
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
-  /// retrieving the favorite countries.
-  Future<List<String>> getFavoriteEventCountries();
+  /// retrieving the favorite country IDs.
+  Future<List<String>> getFavoriteEventCountryIds();
 
-  /// Sets the user's favorite event countries.
+  /// Sets the user's favorite event country IDs.
   ///
   /// [countries] is a list of country IDs.
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
-  /// storing the favorite countries.
-  Future<void> setFavoriteEventCountries(List<String> countries);
+  /// storing the favorite country IDs.
+  Future<void> setFavoriteEventCountryIds(List<String> countries);
 
   /// Adds an event country to the user's favorites.
   ///
