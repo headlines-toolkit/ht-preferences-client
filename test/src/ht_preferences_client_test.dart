@@ -78,30 +78,30 @@ void main() {
       });
     });
 
-    group('getFavoriteSources', () {
+    group('getFavoriteSourceIds', () {
       test('returns the favorite sources when they are set', () async {
-        when(() => client.getFavoriteSources())
+        when(() => client.getFavoriteSourceIds())
             .thenAnswer((_) async => ['source1', 'source2']);
-        expect(await client.getFavoriteSources(), ['source1', 'source2']);
+        expect(await client.getFavoriteSourceIds(), ['source1', 'source2']);
       });
 
       test(
           'throws PreferencesStorageException when favorite sources are not set',
           () async {
-        when(() => client.getFavoriteSources())
+        when(() => client.getFavoriteSourceIds())
             .thenThrow(PreferencesStorageException('Favorite sources not set'));
         expect(
-          () async => client.getFavoriteSources(),
+          () async => client.getFavoriteSourceIds(),
           throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('setFavoriteSources', () {
+    group('setFavoriteSourceIds', () {
       test('sets the favorite sources correctly', () async {
-        when(() => client.setFavoriteSources(any())).thenAnswer((_) async {});
-        await client.setFavoriteSources(['source3', 'source4']);
-        verify(() => client.setFavoriteSources(['source3', 'source4']))
+        when(() => client.setFavoriteSourceIds(any())).thenAnswer((_) async {});
+        await client.setFavoriteSourceIds(['source3', 'source4']);
+        verify(() => client.setFavoriteSourceIds(['source3', 'source4']))
             .called(1);
       });
     });
@@ -132,32 +132,32 @@ void main() {
       });
     });
 
-    group('getFavoriteCategories', () {
+    group('getFavoriteCategoryIds', () {
       test('returns the favorite categories when they are set', () async {
-        when(() => client.getFavoriteCategories())
+        when(() => client.getFavoriteCategoryIds())
             .thenAnswer((_) async => ['cat1', 'cat2']);
-        expect(await client.getFavoriteCategories(), ['cat1', 'cat2']);
+        expect(await client.getFavoriteCategoryIds(), ['cat1', 'cat2']);
       });
 
       test(
           'throws PreferencesStorageException when favorite categories are not set',
           () async {
-        when(() => client.getFavoriteCategories()).thenThrow(
+        when(() => client.getFavoriteCategoryIds()).thenThrow(
           PreferencesStorageException('Favorite categories not set'),
         );
         expect(
-          () async => client.getFavoriteCategories(),
+          () async => client.getFavoriteCategoryIds(),
           throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('setFavoriteCategories', () {
+    group('setFavoriteCategoryIds', () {
       test('sets the favorite categories correctly', () async {
-        when(() => client.setFavoriteCategories(any()))
+        when(() => client.setFavoriteCategoryIds(any()))
             .thenAnswer((_) async {});
-        await client.setFavoriteCategories(['cat3', 'cat4']);
-        verify(() => client.setFavoriteCategories(['cat3', 'cat4'])).called(1);
+        await client.setFavoriteCategoryIds(['cat3', 'cat4']);
+        verify(() => client.setFavoriteCategoryIds(['cat3', 'cat4'])).called(1);
       });
     });
 
@@ -188,12 +188,12 @@ void main() {
       });
     });
 
-    group('getFavoriteEventCountries', () {
+    group('getFavoriteEventCountryIds', () {
       test('returns the favorite event countries when they are set', () async {
-        when(() => client.getFavoriteEventCountries())
+        when(() => client.getFavoriteEventCountryIds())
             .thenAnswer((_) async => ['country1', 'country2']);
         expect(
-          await client.getFavoriteEventCountries(),
+          await client.getFavoriteEventCountryIds(),
           ['country1', 'country2'],
         );
       });
@@ -201,22 +201,23 @@ void main() {
       test(
           'throws PreferencesStorageException when favorite event countries are not set',
           () async {
-        when(() => client.getFavoriteEventCountries()).thenThrow(
+        when(() => client.getFavoriteEventCountryIds()).thenThrow(
           PreferencesStorageException('Favorite event countries not set'),
         );
         expect(
-          () async => client.getFavoriteEventCountries(),
+          () async => client.getFavoriteEventCountryIds(),
           throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('setFavoriteEventCountries', () {
+    group('setFavoriteEventCountryIds', () {
       test('sets the favorite event countries correctly', () async {
-        when(() => client.setFavoriteEventCountries(any()))
+        when(() => client.setFavoriteEventCountryIds(any()))
             .thenAnswer((_) async {});
-        await client.setFavoriteEventCountries(['country3', 'country4']);
-        verify(() => client.setFavoriteEventCountries(['country3', 'country4']))
+        await client.setFavoriteEventCountryIds(['country3', 'country4']);
+        verify(() =>
+                client.setFavoriteEventCountryIds(['country3', 'country4']),)
             .called(1);
       });
     });
