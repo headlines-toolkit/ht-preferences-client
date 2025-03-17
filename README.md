@@ -1,6 +1,6 @@
 # ht_preferences_client
 
-Client for managing user preferences for the headlines toolkit app.
+Abstract client for managing user preferences for the headlines toolkit app.
 
 ## Description
 

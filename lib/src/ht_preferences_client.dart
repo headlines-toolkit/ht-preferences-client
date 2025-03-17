@@ -44,7 +44,7 @@ class HtPreferencesClient {
     throw UnimplementedError();
   }
 
-   /// Gets the user's favorite news sources.
+  /// Gets the user's favorite news sources.
   ///
   /// Returns a list of source IDs.
   ///
@@ -213,13 +213,13 @@ class InvalidLanguageException implements Exception {
 
 /// Thrown when an invalid theme mode is provided.
 class InvalidThemeModeException implements Exception {
-    /// Creates an [InvalidThemeModeException].
+  /// Creates an [InvalidThemeModeException].
   InvalidThemeModeException(this.themeMode);
 
   /// The invalid theme mode.
   final String themeMode;
 
-    @override
+  @override
   String toString() {
     return 'InvalidThemeModeException: Invalid theme mode: $themeMode';
   }

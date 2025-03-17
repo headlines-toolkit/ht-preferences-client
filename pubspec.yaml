@@ -1,5 +1,5 @@
 name: ht_preferences_client
-description: Client for managing user preferences for the headlines toolkit app.
+description: Abstract client for managing user preferences for the headlines toolkit app.
 publish_to: none
 repository: https://github.com/headlines-toolkit/ht-preferences-client
 

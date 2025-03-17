@@ -31,8 +31,10 @@ void main() {
         () async {
       when(() => client.setLanguage(any()))
           .thenThrow(InvalidLanguageException(''));
-      expect(() => client.setLanguage(''),
-          throwsA(isA<InvalidLanguageException>()));
+      expect(
+        () => client.setLanguage(''),
+        throwsA(isA<InvalidLanguageException>()),
+      );
     });
 
     test('getTheme returns the theme', () async {
@@ -75,8 +77,10 @@ void main() {
         () async {
       when(() => client.removeFavoriteSource(any()))
           .thenThrow(SourceNotFoundException('sourceX'));
-      expect(() => client.removeFavoriteSource('sourceX'),
-          throwsA(isA<SourceNotFoundException>()));
+      expect(
+        () => client.removeFavoriteSource('sourceX'),
+        throwsA(isA<SourceNotFoundException>()),
+      );
     });
 
     test('getFavoriteCategories returns the favorite categories', () async {
@@ -109,8 +113,10 @@ void main() {
         () async {
       when(() => client.removeFavoriteCategory(any()))
           .thenThrow(CategoryNotFoundException('categoryX'));
-      expect(() => client.removeFavoriteCategory('categoryX'),
-          throwsA(isA<CategoryNotFoundException>()));
+      expect(
+        () => client.removeFavoriteCategory('categoryX'),
+        throwsA(isA<CategoryNotFoundException>()),
+      );
     });
 
     test('getFavoriteEventCountries returns the favorite event countries',
@@ -118,7 +124,9 @@ void main() {
       when(() => client.getFavoriteEventCountries())
           .thenAnswer((_) async => ['country1', 'country2']);
       expect(
-          await client.getFavoriteEventCountries(), ['country1', 'country2']);
+        await client.getFavoriteEventCountries(),
+        ['country1', 'country2'],
+      );
     });
 
     test('setFavoriteEventCountries sets the favorite event countries',
@@ -150,15 +158,19 @@ void main() {
         () async {
       when(() => client.removeFavoriteEventCountry(any()))
           .thenThrow(CountryNotFoundException('countryX'));
-      expect(() => client.removeFavoriteEventCountry('countryX'),
-          throwsA(isA<CountryNotFoundException>()));
+      expect(
+        () => client.removeFavoriteEventCountry('countryX'),
+        throwsA(isA<CountryNotFoundException>()),
+      );
     });
 
     test('PreferencesStorageException  test', () async {
       when(() => client.getFavoriteEventCountries())
           .thenThrow(PreferencesStorageException('Storage error'));
-      expect(() => client.getFavoriteEventCountries(),
-          throwsA(isA<PreferencesStorageException>()));
+      expect(
+        () => client.getFavoriteEventCountries(),
+        throwsA(isA<PreferencesStorageException>()),
+      );
     });
   });
 }
