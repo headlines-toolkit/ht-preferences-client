@@ -1,16 +1,14 @@
 /// {@template ht_preferences_client}
 /// A client for managing user preferences for the headlines toolkit app.
 /// {@endtemplate}
-class HtPreferencesClient {
+abstract class HtPreferencesClient {
   /// Gets the user's preferred language.
   ///
   /// Returns the language code (e.g., "en", "fr").
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// retrieving the language.
-  Future<String> getLanguage() async {
-    throw UnimplementedError();
-  }
+  Future<String> getLanguage();
 
   /// Sets the user's preferred language.
   ///
@@ -20,9 +18,7 @@ class HtPreferencesClient {
   /// invalid.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// storing the language.
-  Future<void> setLanguage(String language) async {
-    throw UnimplementedError();
-  }
+  Future<void> setLanguage(String language);
 
   /// Gets the user's preferred theme.
   ///
@@ -30,9 +26,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// retrieving the theme.
-  Future<ThemeMode> getTheme() async {
-    throw UnimplementedError();
-  }
+  Future<ThemeMode> getTheme();
 
   /// Sets the user's preferred theme.
   ///
@@ -40,9 +34,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// storing the theme.
-  Future<void> setTheme(ThemeMode theme) async {
-    throw UnimplementedError();
-  }
+  Future<void> setTheme(ThemeMode theme);
 
   /// Gets the user's favorite news sources.
   ///
@@ -50,9 +42,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// retrieving the favorite sources.
-  Future<List<String>> getFavoriteSources() async {
-    throw UnimplementedError();
-  }
+  Future<List<String>> getFavoriteSources();
 
   /// Sets the user's favorite news sources.
   ///
@@ -60,9 +50,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// storing the favorite sources.
-  Future<void> setFavoriteSources(List<String> sources) async {
-    throw UnimplementedError();
-  }
+  Future<void> setFavoriteSources(List<String> sources);
 
   /// Adds a news source to the user's favorites.
   ///
@@ -70,9 +58,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// adding the source.
-  Future<void> addFavoriteSource(String source) async {
-    throw UnimplementedError();
-  }
+  Future<void> addFavoriteSource(String source);
 
   /// Removes a news source from the user's favorites.
   ///
@@ -82,9 +68,7 @@ class HtPreferencesClient {
   /// favorites.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// removing the source.
-  Future<void> removeFavoriteSource(String source) async {
-    throw UnimplementedError();
-  }
+  Future<void> removeFavoriteSource(String source);
 
   /// Gets the user's favorite categories.
   ///
@@ -92,9 +76,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// retrieving the favorite categories.
-  Future<List<String>> getFavoriteCategories() async {
-    throw UnimplementedError();
-  }
+  Future<List<String>> getFavoriteCategories();
 
   /// Sets the user's favorite categories.
   ///
@@ -102,9 +84,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// storing the favorite categories.
-  Future<void> setFavoriteCategories(List<String> categories) async {
-    throw UnimplementedError();
-  }
+  Future<void> setFavoriteCategories(List<String> categories);
 
   /// Adds a category to the user's favorites.
   ///
@@ -112,9 +92,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// adding the category.
-  Future<void> addFavoriteCategory(String category) async {
-    throw UnimplementedError();
-  }
+  Future<void> addFavoriteCategory(String category);
 
   /// Removes a category from the user's favorites.
   ///
@@ -124,9 +102,7 @@ class HtPreferencesClient {
   /// favorites.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// removing the category.
-  Future<void> removeFavoriteCategory(String category) async {
-    throw UnimplementedError();
-  }
+  Future<void> removeFavoriteCategory(String category);
 
   /// Gets the user's favorite event countries.
   ///
@@ -134,9 +110,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// retrieving the favorite countries.
-  Future<List<String>> getFavoriteEventCountries() async {
-    throw UnimplementedError();
-  }
+  Future<List<String>> getFavoriteEventCountries();
 
   /// Sets the user's favorite event countries.
   ///
@@ -144,9 +118,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// storing the favorite countries.
-  Future<void> setFavoriteEventCountries(List<String> countries) async {
-    throw UnimplementedError();
-  }
+  Future<void> setFavoriteEventCountries(List<String> countries);
 
   /// Adds an event country to the user's favorites.
   ///
@@ -154,9 +126,7 @@ class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// adding the country.
-  Future<void> addFavoriteEventCountry(String country) async {
-    throw UnimplementedError();
-  }
+  Future<void> addFavoriteEventCountry(String country);
 
   /// Removes an event country from the user's favorites.
   ///
@@ -166,9 +136,7 @@ class HtPreferencesClient {
   /// favorites.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// removing the country.
-  Future<void> removeFavoriteEventCountry(String country) async {
-    throw UnimplementedError();
-  }
+  Future<void> removeFavoriteEventCountry(String country);
 }
 
 /// Defines the possible theme modes.
