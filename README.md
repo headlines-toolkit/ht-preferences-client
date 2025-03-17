@@ -36,8 +36,8 @@ void main() async {
   // Add a favorite source.
   await client.addFavoriteSource('source_id');
 
-  // Get the user's favorite categories
-  final categories = await client.getFavoriteCategories();
+  // Get the user's favorite category IDs
+  final categories = await client.getFavoriteCategoryIds();
   print('Favorite categories: $categories');
 }
 
@@ -47,9 +47,9 @@ void main() async {
 
 *   Get and set user's preferred language.
 *   Get and set user's preferred theme (light, dark, system).
-*   Manage a list of favorite news sources.
-*   Manage a list of favorite news categories.
-*   Manage a list of favorite event countries.
+*   Manage a list of favorite news source IDs.
+*   Manage a list of favorite news category IDs.
+*   Manage a list of favorite event country IDs.
 
 ## Issues
 
