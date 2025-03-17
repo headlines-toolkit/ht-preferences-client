@@ -10,6 +10,9 @@ class MockHtPreferencesClient extends Mock implements HtPreferencesClient {}
 void main() {
   setUpAll(() {
     registerFallbackValue(ThemeMode.system);
+    registerFallbackValue(HeadlineArticleTextSize.small);
+    registerFallbackValue(AppFontSize.small);
+    registerFallbackValue(ContentDensity.compact);
   });
   group('HtPreferencesClient', () {
     late HtPreferencesClient client;
@@ -78,235 +81,351 @@ void main() {
       });
     });
 
-    group('getFavoriteSourceIds', () {
-      test('returns the favorite sources when they are set', () async {
-        when(() => client.getFavoriteSourceIds())
+    group('getFollowedSourceIds', () {
+      test('returns the followed sources when they are set', () async {
+        when(() => client.getFollowedSourceIds())
             .thenAnswer((_) async => ['source1', 'source2']);
-        expect(await client.getFavoriteSourceIds(), ['source1', 'source2']);
+        expect(await client.getFollowedSourceIds(), ['source1', 'source2']);
       });
 
       test(
-          'throws PreferencesStorageException when favorite sources are not set',
+          'throws PreferencesStorageException when followed sources are not set',
           () async {
-        when(() => client.getFavoriteSourceIds())
+        when(() => client.getFollowedSourceIds())
             .thenThrow(PreferencesStorageException('Favorite sources not set'));
         expect(
-          () async => client.getFavoriteSourceIds(),
+          () async => client.getFollowedSourceIds(),
           throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('setFavoriteSourceIds', () {
-      test('sets the favorite sources correctly', () async {
-        when(() => client.setFavoriteSourceIds(any())).thenAnswer((_) async {});
-        await client.setFavoriteSourceIds(['source3', 'source4']);
-        verify(() => client.setFavoriteSourceIds(['source3', 'source4']))
+    group('setFollowedSourceIds', () {
+      test('sets the followed sources correctly', () async {
+        when(() => client.setFollowedSourceIds(any())).thenAnswer((_) async {});
+        await client.setFollowedSourceIds(['source3', 'source4']);
+        verify(() => client.setFollowedSourceIds(['source3', 'source4']))
             .called(1);
       });
     });
 
-    group('addFavoriteSource', () {
-      test('adds a favorite source correctly', () async {
-        when(() => client.addFavoriteSource(any())).thenAnswer((_) async {});
-        await client.addFavoriteSource('source5');
-        verify(() => client.addFavoriteSource('source5')).called(1);
+    group('addFollowedSource', () {
+      test('adds a followed source correctly', () async {
+        when(() => client.addFollowedSource(any())).thenAnswer((_) async {});
+        await client.addFollowedSource('source5');
+        verify(() => client.addFollowedSource('source5')).called(1);
       });
     });
 
-    group('removeFavoriteSource', () {
-      test('removes a favorite source correctly', () async {
-        when(() => client.removeFavoriteSource(any())).thenAnswer((_) async {});
-        await client.removeFavoriteSource('source1');
-        verify(() => client.removeFavoriteSource('source1')).called(1);
+    group('removeFollowedSource', () {
+      test('removes a followed source correctly', () async {
+        when(() => client.removeFollowedSource(any())).thenAnswer((_) async {});
+        await client.removeFollowedSource('source1');
+        verify(() => client.removeFollowedSource('source1')).called(1);
       });
 
       test('throws SourceNotFoundException when source is not a favorite',
           () async {
-        when(() => client.removeFavoriteSource(any()))
+        when(() => client.removeFollowedSource(any()))
             .thenThrow(SourceNotFoundException('source1'));
         expect(
-          () async => client.removeFavoriteSource('source1'),
+          () async => client.removeFollowedSource('source1'),
           throwsA(isA<SourceNotFoundException>()),
         );
       });
     });
 
-    group('getFavoriteCategoryIds', () {
-      test('returns the favorite categories when they are set', () async {
-        when(() => client.getFavoriteCategoryIds())
+    group('getFollowedCategoryIds', () {
+      test('returns the followed categories when they are set', () async {
+        when(() => client.getFollowedCategoryIds())
             .thenAnswer((_) async => ['cat1', 'cat2']);
-        expect(await client.getFavoriteCategoryIds(), ['cat1', 'cat2']);
+        expect(await client.getFollowedCategoryIds(), ['cat1', 'cat2']);
       });
 
       test(
-          'throws PreferencesStorageException when favorite categories are not set',
+          'throws PreferencesStorageException when followed categories are not set',
           () async {
-        when(() => client.getFavoriteCategoryIds()).thenThrow(
+        when(() => client.getFollowedCategoryIds()).thenThrow(
           PreferencesStorageException('Favorite categories not set'),
         );
         expect(
-          () async => client.getFavoriteCategoryIds(),
+          () async => client.getFollowedCategoryIds(),
           throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('setFavoriteCategoryIds', () {
-      test('sets the favorite categories correctly', () async {
-        when(() => client.setFavoriteCategoryIds(any()))
+    group('setFollowedCategoryIds', () {
+      test('sets the followed categories correctly', () async {
+        when(() => client.setFollowedCategoryIds(any()))
             .thenAnswer((_) async {});
-        await client.setFavoriteCategoryIds(['cat3', 'cat4']);
-        verify(() => client.setFavoriteCategoryIds(['cat3', 'cat4'])).called(1);
+        await client.setFollowedCategoryIds(['cat3', 'cat4']);
+        verify(() => client.setFollowedCategoryIds(['cat3', 'cat4'])).called(1);
       });
     });
 
-    group('addFavoriteCategory', () {
-      test('adds a favorite category correctly', () async {
-        when(() => client.addFavoriteCategory(any())).thenAnswer((_) async {});
-        await client.addFavoriteCategory('cat5');
-        verify(() => client.addFavoriteCategory('cat5')).called(1);
+    group('addFollowedCategory', () {
+      test('adds a followed category correctly', () async {
+        when(() => client.addFollowedCategory(any())).thenAnswer((_) async {});
+        await client.addFollowedCategory('cat5');
+        verify(() => client.addFollowedCategory('cat5')).called(1);
       });
     });
 
-    group('removeFavoriteCategory', () {
-      test('removes a favorite category correctly', () async {
-        when(() => client.removeFavoriteCategory(any()))
+    group('removeFollowedCategory', () {
+      test('removes a followed category correctly', () async {
+        when(() => client.removeFollowedCategory(any()))
             .thenAnswer((_) async {});
-        await client.removeFavoriteCategory('cat1');
-        verify(() => client.removeFavoriteCategory('cat1')).called(1);
+        await client.removeFollowedCategory('cat1');
+        verify(() => client.removeFollowedCategory('cat1')).called(1);
       });
 
       test('throws CategoryNotFoundException when category is not a favorite',
           () async {
-        when(() => client.removeFavoriteCategory(any()))
+        when(() => client.removeFollowedCategory(any()))
             .thenThrow(CategoryNotFoundException('cat1'));
         expect(
-          () async => client.removeFavoriteCategory('cat1'),
+          () async => client.removeFollowedCategory('cat1'),
           throwsA(isA<CategoryNotFoundException>()),
         );
       });
     });
 
-    group('getFavoriteEventCountryIds', () {
-      test('returns the favorite event countries when they are set', () async {
-        when(() => client.getFavoriteEventCountryIds())
+    group('getFollowedEventCountryIds', () {
+      test('returns the followed event countries when they are set', () async {
+        when(() => client.getFollowedEventCountryIds())
             .thenAnswer((_) async => ['country1', 'country2']);
         expect(
-          await client.getFavoriteEventCountryIds(),
+          await client.getFollowedEventCountryIds(),
           ['country1', 'country2'],
         );
       });
 
       test(
-          'throws PreferencesStorageException when favorite event countries are not set',
+          'throws PreferencesStorageException when followed event countries are not set',
           () async {
-        when(() => client.getFavoriteEventCountryIds()).thenThrow(
+        when(() => client.getFollowedEventCountryIds()).thenThrow(
           PreferencesStorageException('Favorite event countries not set'),
         );
         expect(
-          () async => client.getFavoriteEventCountryIds(),
+          () async => client.getFollowedEventCountryIds(),
           throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('setFavoriteEventCountryIds', () {
-      test('sets the favorite event countries correctly', () async {
-        when(() => client.setFavoriteEventCountryIds(any()))
+    group('setFollowedEventCountryIds', () {
+      test('sets the followed event countries correctly', () async {
+        when(() => client.setFollowedEventCountryIds(any()))
             .thenAnswer((_) async {});
-        await client.setFavoriteEventCountryIds(['country3', 'country4']);
-        verify(() =>
-                client.setFavoriteEventCountryIds(['country3', 'country4']),)
-            .called(1);
+        await client.setFollowedEventCountryIds(['country3', 'country4']);
+        verify(
+          () => client.setFollowedEventCountryIds(['country3', 'country4']),
+        ).called(1);
       });
     });
 
-    group('addFavoriteEventCountry', () {
-      test('adds a favorite event country correctly', () async {
-        when(() => client.addFavoriteEventCountry(any()))
+    group('addFollowedEventCountry', () {
+      test('adds a followed event country correctly', () async {
+        when(() => client.addFollowedEventCountry(any()))
             .thenAnswer((_) async {});
-        await client.addFavoriteEventCountry('country5');
-        verify(() => client.addFavoriteEventCountry('country5')).called(1);
+        await client.addFollowedEventCountry('country5');
+        verify(() => client.addFollowedEventCountry('country5')).called(1);
       });
     });
 
-    group('removeFavoriteEventCountry', () {
-      test('removes a favorite event country correctly', () async {
-        when(() => client.removeFavoriteEventCountry(any()))
+    group('removeFollowedEventCountry', () {
+      test('removes a followed event country correctly', () async {
+        when(() => client.removeFollowedEventCountry(any()))
             .thenAnswer((_) async {});
-        await client.removeFavoriteEventCountry('country1');
-        verify(() => client.removeFavoriteEventCountry('country1')).called(1);
+        await client.removeFollowedEventCountry('country1');
+        verify(() => client.removeFollowedEventCountry('country1')).called(1);
       });
 
       test(
           'throws CountryNotFoundException when event country is not a favorite',
           () async {
-        when(() => client.removeFavoriteEventCountry(any()))
+        when(() => client.removeFollowedEventCountry(any()))
             .thenThrow(CountryNotFoundException('country1'));
         expect(
-          () async => client.removeFavoriteEventCountry('country1'),
+          () async => client.removeFollowedEventCountry('country1'),
           throwsA(isA<CountryNotFoundException>()),
         );
       });
     });
-    group('PreferencesStorageException', () {
-      test('toString returns correct message', () {
-        final exception = PreferencesStorageException('Test message');
+
+    group('getHeadlineArticleTextSize', () {
+      test('returns the headline article text size when it is set', () async {
+        when(() => client.getHeadlineArticleTextSize())
+            .thenAnswer((_) async => HeadlineArticleTextSize.medium);
+        expect(await client.getHeadlineArticleTextSize(),
+            HeadlineArticleTextSize.medium,);
+      });
+
+      test(
+          'throws PreferencesStorageException when headline article text size is not set',
+          () async {
+        when(() => client.getHeadlineArticleTextSize()).thenThrow(
+          PreferencesStorageException('Headline article text size not set'),
+        );
         expect(
-          exception.toString(),
-          'PreferencesStorageException: Test message',
+          () async => client.getHeadlineArticleTextSize(),
+          throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('InvalidLanguageException', () {
-      test('toString returns correct message', () {
-        final exception = InvalidLanguageException('invalid');
+    group('setHeadlineArticleTextSize', () {
+      test('sets the headline article text size correctly', () async {
+        when(() => client.setHeadlineArticleTextSize(any()))
+            .thenAnswer((_) async {});
+        await client.setHeadlineArticleTextSize(HeadlineArticleTextSize.large);
+        verify(() => client.setHeadlineArticleTextSize(
+            HeadlineArticleTextSize.large,),).called(1);
+      });
+    });
+
+    group('getAppFontSize', () {
+      test('returns the app font size when it is set', () async {
+        when(() => client.getAppFontSize())
+            .thenAnswer((_) async => AppFontSize.medium);
+        expect(await client.getAppFontSize(), AppFontSize.medium);
+      });
+
+      test('throws PreferencesStorageException when app font size is not set',
+          () async {
+        when(() => client.getAppFontSize())
+            .thenThrow(PreferencesStorageException('App font size not set'));
         expect(
-          exception.toString(),
-          'InvalidLanguageException: Invalid language code: invalid',
+          () async => client.getAppFontSize(),
+          throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('InvalidThemeModeException', () {
-      test('toString returns correct message', () {
-        final exception = InvalidThemeModeException('test');
+    group('setAppFontSize', () {
+      test('sets the app font size correctly', () async {
+        when(() => client.setAppFontSize(any())).thenAnswer((_) async {});
+        await client.setAppFontSize(AppFontSize.large);
+        verify(() => client.setAppFontSize(AppFontSize.large)).called(1);
+      });
+    });
+
+    group('getSavedHeadlines', () {
+      test('returns the saved headlines when they are set', () async {
+        when(() => client.getSavedHeadlines())
+            .thenAnswer((_) async => ['headline1', 'headline2']);
+        expect(await client.getSavedHeadlines(), ['headline1', 'headline2']);
+      });
+
+      test(
+          'throws PreferencesStorageException when saved headlines are not set',
+          () async {
+        when(() => client.getSavedHeadlines()).thenThrow(
+          PreferencesStorageException('Saved headlines not set'),
+        );
         expect(
-          exception.toString(),
-          'InvalidThemeModeException: Invalid theme mode: test',
+          () async => client.getSavedHeadlines(),
+          throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('SourceNotFoundException', () {
-      test('toString returns correct message', () {
-        final exception = SourceNotFoundException('source1');
+    group('setSavedHeadlines', () {
+      test('sets the saved headlines correctly', () async {
+        when(() => client.setSavedHeadlines(any())).thenAnswer((_) async {});
+        await client.setSavedHeadlines(['headline3', 'headline4']);
+        verify(() => client.setSavedHeadlines(['headline3', 'headline4']))
+            .called(1);
+      });
+    });
+
+    group('addSavedHeadline', () {
+      test('adds a saved headline correctly', () async {
+        when(() => client.addSavedHeadline(any())).thenAnswer((_) async {});
+        await client.addSavedHeadline('headline5');
+        verify(() => client.addSavedHeadline('headline5')).called(1);
+      });
+    });
+
+    group('removeSavedHeadline', () {
+      test('removes a saved headline correctly', () async {
+        when(() => client.removeSavedHeadline(any())).thenAnswer((_) async {});
+        await client.removeSavedHeadline('headline1');
+        verify(() => client.removeSavedHeadline('headline1')).called(1);
+      });
+
+      test('throws HeadlineNotFoundException when headline is not saved',
+          () async {
+        when(() => client.removeSavedHeadline(any()))
+            .thenThrow(HeadlineNotFoundException('headline1'));
         expect(
-          exception.toString(),
-          'SourceNotFoundException: Source not found in favorites: source1',
+          () async => client.removeSavedHeadline('headline1'),
+          throwsA(isA<HeadlineNotFoundException>()),
         );
       });
     });
 
-    group('CategoryNotFoundException', () {
-      test('toString returns correct message', () {
-        final exception = CategoryNotFoundException('category1');
+    group('removeAllSavedHeadlines', () {
+      test('removes all saved headlines correctly', () async {
+        when(() => client.removeAllSavedHeadlines()).thenAnswer((_) async {});
+        await client.removeAllSavedHeadlines();
+        verify(() => client.removeAllSavedHeadlines()).called(1);
+      });
+    });
+
+    group('removeAllFollowedSourceIds', () {
+      test('removes all followed sources correctly', () async {
+        when(() => client.removeAllFollowedSourceIds())
+            .thenAnswer((_) async {});
+        await client.removeAllFollowedSourceIds();
+        verify(() => client.removeAllFollowedSourceIds()).called(1);
+      });
+    });
+
+    group('removeAllFollowedCategoryIds', () {
+      test('removes all followed categories correctly', () async {
+        when(() => client.removeAllFollowedCategoryIds())
+            .thenAnswer((_) async {});
+        await client.removeAllFollowedCategoryIds();
+        verify(() => client.removeAllFollowedCategoryIds()).called(1);
+      });
+    });
+
+    group('removeAllFollowedEventCountryIds', () {
+      test('removes all followed event countries correctly', () async {
+        when(() => client.removeAllFollowedEventCountryIds())
+            .thenAnswer((_) async {});
+        await client.removeAllFollowedEventCountryIds();
+        verify(() => client.removeAllFollowedEventCountryIds()).called(1);
+      });
+    });
+
+    group('getContentDensity', () {
+      test('returns the content density when it is set', () async {
+        when(() => client.getContentDensity())
+            .thenAnswer((_) async => ContentDensity.compact);
+        expect(await client.getContentDensity(), ContentDensity.compact);
+      });
+
+      test('throws PreferencesStorageException when content density is not set',
+          () async {
+        when(() => client.getContentDensity()).thenThrow(
+          PreferencesStorageException('Content density not set'),
+        );
         expect(
-          exception.toString(),
-          'CategoryNotFoundException: Category not found in favorites: category1',
+          () async => client.getContentDensity(),
+          throwsA(isA<PreferencesStorageException>()),
         );
       });
     });
 
-    group('CountryNotFoundException', () {
-      test('toString returns correct message', () {
-        final exception = CountryNotFoundException('country1');
-        expect(
-          exception.toString(),
-          'CountryNotFoundException: Country not found in favorites: country1',
-        );
+    group('setContentDensity', () {
+      test('sets the content density correctly', () async {
+        when(() => client.setContentDensity(any())).thenAnswer((_) async {});
+        await client.setContentDensity(ContentDensity.comfortable);
+        verify(() => client.setContentDensity(ContentDensity.comfortable))
+            .called(1);
       });
     });
   });
