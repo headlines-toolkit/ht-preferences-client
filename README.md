@@ -4,7 +4,7 @@ Abstract client for managing user preferences for the headlines toolkit app.
 
 ## Description
 
-This package provides the `HtPreferencesClient` class, which allows you to manage user preferences for the Headlines Toolkit app. It handles preferences such as language, theme, favorite sources, favorite categories, and favorite event countries.
+This package provides the `HtPreferencesClient` class, which allows you to manage user preferences for the headlines toolkit app. It handles preferences such as language, theme, favorite sources, favorite categories, and favorite event countries.
 
 ## Getting started
 
@@ -53,7 +53,7 @@ void main() async {
 
 ## Issues
 
-Please file any issues, bugs, or feature requests at [https://github.com/headlines-toolkit/ht-preferences-client/issues](https://github.com/headlines-toolkit/ht-preferences-client/issues).
+Please file any issues, bugs, or feature requests at the [issue tracker](https://github.com/headlines-toolkit/ht-preferences-client/issues).
 
 ## License
 
