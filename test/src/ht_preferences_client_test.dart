@@ -1,3 +1,6 @@
+//
+//ignore_for_file: lines_longer_than_80_chars
+
 import 'package:ht_preferences_client/ht_preferences_client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
@@ -140,7 +143,8 @@ void main() {
           'throws PreferencesStorageException when favorite categories are not set',
           () async {
         when(() => client.getFavoriteCategories()).thenThrow(
-            PreferencesStorageException('Favorite categories not set'),);
+          PreferencesStorageException('Favorite categories not set'),
+        );
         expect(
           () async => client.getFavoriteCategories(),
           throwsA(isA<PreferencesStorageException>()),
@@ -198,7 +202,8 @@ void main() {
           'throws PreferencesStorageException when favorite event countries are not set',
           () async {
         when(() => client.getFavoriteEventCountries()).thenThrow(
-            PreferencesStorageException('Favorite event countries not set'),);
+          PreferencesStorageException('Favorite event countries not set'),
+        );
         expect(
           () async => client.getFavoriteEventCountries(),
           throwsA(isA<PreferencesStorageException>()),
@@ -248,47 +253,59 @@ void main() {
       test('toString returns correct message', () {
         final exception = PreferencesStorageException('Test message');
         expect(
-            exception.toString(), 'PreferencesStorageException: Test message',);
+          exception.toString(),
+          'PreferencesStorageException: Test message',
+        );
       });
     });
 
     group('InvalidLanguageException', () {
       test('toString returns correct message', () {
         final exception = InvalidLanguageException('invalid');
-        expect(exception.toString(),
-            'InvalidLanguageException: Invalid language code: invalid',);
+        expect(
+          exception.toString(),
+          'InvalidLanguageException: Invalid language code: invalid',
+        );
       });
     });
 
     group('InvalidThemeModeException', () {
       test('toString returns correct message', () {
         final exception = InvalidThemeModeException('test');
-        expect(exception.toString(),
-            'InvalidThemeModeException: Invalid theme mode: test',);
+        expect(
+          exception.toString(),
+          'InvalidThemeModeException: Invalid theme mode: test',
+        );
       });
     });
 
     group('SourceNotFoundException', () {
       test('toString returns correct message', () {
         final exception = SourceNotFoundException('source1');
-        expect(exception.toString(),
-            'SourceNotFoundException: Source not found in favorites: source1',);
+        expect(
+          exception.toString(),
+          'SourceNotFoundException: Source not found in favorites: source1',
+        );
       });
     });
 
     group('CategoryNotFoundException', () {
       test('toString returns correct message', () {
         final exception = CategoryNotFoundException('category1');
-        expect(exception.toString(),
-            'CategoryNotFoundException: Category not found in favorites: category1',);
+        expect(
+          exception.toString(),
+          'CategoryNotFoundException: Category not found in favorites: category1',
+        );
       });
     });
 
     group('CountryNotFoundException', () {
       test('toString returns correct message', () {
         final exception = CountryNotFoundException('country1');
-        expect(exception.toString(),
-            'CountryNotFoundException: Country not found in favorites: country1',);
+        expect(
+          exception.toString(),
+          'CountryNotFoundException: Country not found in favorites: country1',
+        );
       });
     });
   });

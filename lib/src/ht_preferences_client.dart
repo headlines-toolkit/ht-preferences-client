@@ -1,3 +1,6 @@
+//
+//ignore_for_file: lines_longer_than_80_chars
+
 /// {@template ht_preferences_client}
 /// A client for managing user preferences for the headlines toolkit app.
 /// {@endtemplate}
