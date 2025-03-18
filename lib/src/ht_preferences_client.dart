@@ -61,7 +61,7 @@ abstract class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// adding the source.
-  Future<void> addFollowedSource(String source);
+  Future<void> addFollowedSourceId(String source);
 
   /// Removes a news source from the user's follows.
   ///
@@ -71,7 +71,7 @@ abstract class HtPreferencesClient {
   /// follows.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// removing the source.
-  Future<void> removeFollowedSource(String source);
+  Future<void> removeFollowedSourceId(String source);
 
   /// Gets the user's followed category IDs.
   ///
@@ -95,7 +95,7 @@ abstract class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// adding the category.
-  Future<void> addFollowedCategory(String category);
+  Future<void> addFollowedCategoryId(String category);
 
   /// Removes a category from the user's follows.
   ///
@@ -105,7 +105,7 @@ abstract class HtPreferencesClient {
   /// follows.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// removing the category.
-  Future<void> removeFollowedCategory(String category);
+  Future<void> removeFollowedCategoryId(String category);
 
   /// Gets the user's followed event country IDs.
   ///
@@ -129,7 +129,7 @@ abstract class HtPreferencesClient {
   ///
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// adding the country.
-  Future<void> addFollowedEventCountry(String country);
+  Future<void> addFollowedEventCountryId(String country);
 
   /// Removes an event country from the user's follows.
   ///
@@ -139,7 +139,7 @@ abstract class HtPreferencesClient {
   /// follows.
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// removing the country.
-  Future<void> removeFollowedEventCountry(String country);
+  Future<void> removeFollowedEventCountryId(String country);
 
   /// Removes all followed news source IDs.
   ///
@@ -248,6 +248,34 @@ abstract class HtPreferencesClient {
   /// Throws a [PreferencesStorageException] if an error occurs while
   /// storing the content density.
   Future<void> setContentDensity(ContentDensity contentDensity);
+
+  /// Gets the user's preferred feed tile layout.
+  ///
+  /// Returns the [FeedTileLayout].
+  ///
+  /// Throws a [PreferencesStorageException] if an error occurs while
+  /// retrieving the feed tile layout.
+  Future<FeedTileLayout> getFeedTileLayout();
+
+  /// Sets the user's preferred feed tile layout.
+  ///
+  /// [feedTileLayout] is the [FeedTileLayout] to set.
+  ///
+  /// Throws a [PreferencesStorageException] if an error occurs while
+  /// storing the feed tile layout.
+  Future<void> setFeedTileLayout(FeedTileLayout feedTileLayout);
+}
+
+/// Defines the possible feed tile layouts.
+enum FeedTileLayout {
+  /// Image above metadata.
+  imageTop,
+
+  /// Image beside metadata.
+  imageStart,
+
+  /// No image.
+  textOnly,
 }
 
 /// Defines the possible content densities.
