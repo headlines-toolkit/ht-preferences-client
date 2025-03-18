@@ -13,6 +13,7 @@ void main() {
     registerFallbackValue(HeadlineArticleTextSize.small);
     registerFallbackValue(AppFontSize.small);
     registerFallbackValue(ContentDensity.compact);
+    registerFallbackValue(FeedTileLayout.imageStart);
   });
   group('HtPreferencesClient', () {
     late HtPreferencesClient client;
@@ -109,27 +110,28 @@ void main() {
       });
     });
 
-    group('addFollowedSource', () {
+    group('addFollowedSourceId', () {
       test('adds a followed source correctly', () async {
-        when(() => client.addFollowedSource(any())).thenAnswer((_) async {});
-        await client.addFollowedSource('source5');
-        verify(() => client.addFollowedSource('source5')).called(1);
+        when(() => client.addFollowedSourceId(any())).thenAnswer((_) async {});
+        await client.addFollowedSourceId('source5');
+        verify(() => client.addFollowedSourceId('source5')).called(1);
       });
     });
 
     group('removeFollowedSource', () {
       test('removes a followed source correctly', () async {
-        when(() => client.removeFollowedSource(any())).thenAnswer((_) async {});
-        await client.removeFollowedSource('source1');
-        verify(() => client.removeFollowedSource('source1')).called(1);
+        when(() => client.removeFollowedSourceId(any()))
+            .thenAnswer((_) async {});
+        await client.removeFollowedSourceId('source1');
+        verify(() => client.removeFollowedSourceId('source1')).called(1);
       });
 
       test('throws SourceNotFoundException when source is not a favorite',
           () async {
-        when(() => client.removeFollowedSource(any()))
+        when(() => client.removeFollowedSourceId(any()))
             .thenThrow(SourceNotFoundException('source1'));
         expect(
-          () async => client.removeFollowedSource('source1'),
+          () async => client.removeFollowedSourceId('source1'),
           throwsA(isA<SourceNotFoundException>()),
         );
       });
@@ -166,26 +168,27 @@ void main() {
 
     group('addFollowedCategory', () {
       test('adds a followed category correctly', () async {
-        when(() => client.addFollowedCategory(any())).thenAnswer((_) async {});
-        await client.addFollowedCategory('cat5');
-        verify(() => client.addFollowedCategory('cat5')).called(1);
+        when(() => client.addFollowedCategoryId(any()))
+            .thenAnswer((_) async {});
+        await client.addFollowedCategoryId('cat5');
+        verify(() => client.addFollowedCategoryId('cat5')).called(1);
       });
     });
 
     group('removeFollowedCategory', () {
       test('removes a followed category correctly', () async {
-        when(() => client.removeFollowedCategory(any()))
+        when(() => client.removeFollowedCategoryId(any()))
             .thenAnswer((_) async {});
-        await client.removeFollowedCategory('cat1');
-        verify(() => client.removeFollowedCategory('cat1')).called(1);
+        await client.removeFollowedCategoryId('cat1');
+        verify(() => client.removeFollowedCategoryId('cat1')).called(1);
       });
 
       test('throws CategoryNotFoundException when category is not a favorite',
           () async {
-        when(() => client.removeFollowedCategory(any()))
+        when(() => client.removeFollowedCategoryId(any()))
             .thenThrow(CategoryNotFoundException('cat1'));
         expect(
-          () async => client.removeFollowedCategory('cat1'),
+          () async => client.removeFollowedCategoryId('cat1'),
           throwsA(isA<CategoryNotFoundException>()),
         );
       });
@@ -227,28 +230,28 @@ void main() {
 
     group('addFollowedEventCountry', () {
       test('adds a followed event country correctly', () async {
-        when(() => client.addFollowedEventCountry(any()))
+        when(() => client.addFollowedEventCountryId(any()))
             .thenAnswer((_) async {});
-        await client.addFollowedEventCountry('country5');
-        verify(() => client.addFollowedEventCountry('country5')).called(1);
+        await client.addFollowedEventCountryId('country5');
+        verify(() => client.addFollowedEventCountryId('country5')).called(1);
       });
     });
 
     group('removeFollowedEventCountry', () {
       test('removes a followed event country correctly', () async {
-        when(() => client.removeFollowedEventCountry(any()))
+        when(() => client.removeFollowedEventCountryId(any()))
             .thenAnswer((_) async {});
-        await client.removeFollowedEventCountry('country1');
-        verify(() => client.removeFollowedEventCountry('country1')).called(1);
+        await client.removeFollowedEventCountryId('country1');
+        verify(() => client.removeFollowedEventCountryId('country1')).called(1);
       });
 
       test(
           'throws CountryNotFoundException when event country is not a favorite',
           () async {
-        when(() => client.removeFollowedEventCountry(any()))
+        when(() => client.removeFollowedEventCountryId(any()))
             .thenThrow(CountryNotFoundException('country1'));
         expect(
-          () async => client.removeFollowedEventCountry('country1'),
+          () async => client.removeFollowedEventCountryId('country1'),
           throwsA(isA<CountryNotFoundException>()),
         );
       });
@@ -258,8 +261,10 @@ void main() {
       test('returns the headline article text size when it is set', () async {
         when(() => client.getHeadlineArticleTextSize())
             .thenAnswer((_) async => HeadlineArticleTextSize.medium);
-        expect(await client.getHeadlineArticleTextSize(),
-            HeadlineArticleTextSize.medium,);
+        expect(
+          await client.getHeadlineArticleTextSize(),
+          HeadlineArticleTextSize.medium,
+        );
       });
 
       test(
@@ -280,8 +285,11 @@ void main() {
         when(() => client.setHeadlineArticleTextSize(any()))
             .thenAnswer((_) async {});
         await client.setHeadlineArticleTextSize(HeadlineArticleTextSize.large);
-        verify(() => client.setHeadlineArticleTextSize(
-            HeadlineArticleTextSize.large,),).called(1);
+        verify(
+          () => client.setHeadlineArticleTextSize(
+            HeadlineArticleTextSize.large,
+          ),
+        ).called(1);
       });
     });
 
@@ -425,6 +433,35 @@ void main() {
         when(() => client.setContentDensity(any())).thenAnswer((_) async {});
         await client.setContentDensity(ContentDensity.comfortable);
         verify(() => client.setContentDensity(ContentDensity.comfortable))
+            .called(1);
+      });
+    });
+
+    group('getFeedTileLayout', () {
+      test('returns the feed tile layout when it is set', () async {
+        when(() => client.getFeedTileLayout())
+            .thenAnswer((_) async => FeedTileLayout.imageStart);
+        expect(await client.getFeedTileLayout(), FeedTileLayout.imageStart);
+      });
+
+      test(
+          'throws PreferencesStorageException when feed tile layout is not set',
+          () async {
+        when(() => client.getFeedTileLayout()).thenThrow(
+          PreferencesStorageException('Feed tile layout not set'),
+        );
+        expect(
+          () async => client.getFeedTileLayout(),
+          throwsA(isA<PreferencesStorageException>()),
+        );
+      });
+    });
+
+    group('setFeedTileLayout', () {
+      test('sets the feed tile layout correctly', () async {
+        when(() => client.setFeedTileLayout(any())).thenAnswer((_) async {});
+        await client.setFeedTileLayout(FeedTileLayout.imageTop);
+        verify(() => client.setFeedTileLayout(FeedTileLayout.imageTop))
             .called(1);
       });
     });
