@@ -12,10 +12,7 @@ dependencies:
     git: 
       url: https://github.com/headlines-toolkit/ht-headlines-client
   json_annotation: ^4.9.0
-
-  ht_categories_client: any
-  ht_countries_client: any
-  ht_sources_client: any
+  
 dev_dependencies:
   build_runner: ^2.4.15
   json_serializable: ^6.9.4
