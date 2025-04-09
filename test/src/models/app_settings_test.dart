@@ -1,65 +1,78 @@
-import 'package:ht_preferences_client/src/enums/app_font_size.dart';
 import 'package:ht_preferences_client/src/enums/enums.dart';
-import 'package:ht_preferences_client/src/models/app_settings.dart';
+import 'package:ht_preferences_client/src/enums/font_size.dart';
+import 'package:ht_preferences_client/src/models/models.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('AppSettings', () {
-    test('can be created fromJson with small font size', () {
-      final appSettings = AppSettings.fromJson(const {
-        'appFontSize': 'small',
-        'appFontType': 'roboto',
-      });
-      expect(appSettings.appFontSize, AppFontSize.small);
-      expect(appSettings.appFontType, AppFontType.roboto);
-    });
+    // Sample enum values
+    const sampleFontSize = FontSize.medium;
+    const sampleFontType = AppFontType.roboto;
 
-    test('can be created fromJson with medium font size', () {
-      final appSettings = AppSettings.fromJson(const {
-        'appFontSize': 'medium',
-        'appFontType': 'roboto',
-      });
-      expect(appSettings.appFontSize, AppFontSize.medium);
-      expect(appSettings.appFontType, AppFontType.roboto);
-    });
+    // Sample AppSettings instance
+    const appSettings = AppSettings(
+      appFontSize: sampleFontSize,
+      appFontType: sampleFontType,
+    );
 
-    test('can be created fromJson with large font size', () {
-      final appSettings = AppSettings.fromJson(const {
-        'appFontSize': 'large',
-        'appFontType': 'roboto',
-      });
-      expect(appSettings.appFontSize, AppFontSize.large);
-      expect(appSettings.appFontType, AppFontType.roboto);
-    });
+    // Sample JSON map corresponding to the AppSettings instance
+    final appSettingsJson = {
+      'appFontSize': 'medium', // Enum values are serialized as strings
+      'appFontType': 'roboto',
+    };
 
-    test('can be converted toJson with small font size', () {
-      const appSettings = AppSettings(
-        appFontSize: AppFontSize.small,
-        appFontType: AppFontType.roboto,
+    test('can be instantiated', () {
+      expect(
+        const AppSettings(
+          appFontSize: FontSize.large,
+          appFontType: AppFontType.openSans,
+        ),
+        isNotNull,
       );
-      final json = appSettings.toJson();
-      expect(json['appFontSize'], 'small');
-      expect(json['appFontType'], 'roboto');
     });
 
-    test('can be converted toJson with medium font size', () {
-      const appSettings = AppSettings(
-        appFontSize: AppFontSize.medium,
-        appFontType: AppFontType.roboto,
+    test('supports value equality', () {
+      expect(
+        appSettings,
+        equals(
+          const AppSettings(
+            appFontSize: sampleFontSize,
+            appFontType: sampleFontType,
+          ),
+        ),
       );
-      final json = appSettings.toJson();
-      expect(json['appFontSize'], 'medium');
-      expect(json['appFontType'], 'roboto');
     });
 
-    test('can be converted toJson with large font size', () {
-      const appSettings = AppSettings(
-        appFontSize: AppFontSize.large,
-        appFontType: AppFontType.roboto,
-      );
-      final json = appSettings.toJson();
-      expect(json['appFontSize'], 'large');
-      expect(json['appFontType'], 'roboto');
+    test('props are correct', () {
+      expect(appSettings.props, equals([sampleFontSize, sampleFontType]));
+    });
+
+    group('fromJson', () {
+      test('works correctly', () {
+        expect(AppSettings.fromJson(appSettingsJson), equals(appSettings));
+      });
+
+      test('throws ArgumentError for invalid FontSize string', () {
+        final invalidJson = {...appSettingsJson, 'appFontSize': 'invalidSize'};
+        expect(
+          () => AppSettings.fromJson(invalidJson),
+          throwsA(isA<ArgumentError>()), // $enumDecode throws ArgumentError
+        );
+      });
+
+      test('throws ArgumentError for invalid AppFontType string', () {
+        final invalidJson = {...appSettingsJson, 'appFontType': 'invalidType'};
+        expect(
+          () => AppSettings.fromJson(invalidJson),
+          throwsA(isA<ArgumentError>()), // $enumDecode throws ArgumentError
+        );
+      });
+    });
+
+    group('toJson', () {
+      test('works correctly', () {
+        expect(appSettings.toJson(), equals(appSettingsJson));
+      });
     });
   });
 }

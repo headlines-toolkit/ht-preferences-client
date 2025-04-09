@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:ht_preferences_client/src/enums/app_font_size.dart';
 import 'package:ht_preferences_client/src/enums/enums.dart';
+import 'package:ht_preferences_client/src/enums/font_size.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'app_settings.g.dart';
@@ -18,7 +18,7 @@ class AppSettings extends Equatable {
       _$AppSettingsFromJson(json);
 
   /// The font size for the app's UI.
-  final AppFontSize appFontSize;
+  final FontSize appFontSize;
 
   /// {@template app_font_type}
   /// The font type (name) for the app's UI.

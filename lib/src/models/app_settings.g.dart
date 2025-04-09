@@ -7,20 +7,20 @@ part of 'app_settings.dart';
 // **************************************************************************
 
 AppSettings _$AppSettingsFromJson(Map<String, dynamic> json) => AppSettings(
-  appFontSize: $enumDecode(_$AppFontSizeEnumMap, json['appFontSize']),
+  appFontSize: $enumDecode(_$FontSizeEnumMap, json['appFontSize']),
   appFontType: $enumDecode(_$AppFontTypeEnumMap, json['appFontType']),
 );
 
 Map<String, dynamic> _$AppSettingsToJson(AppSettings instance) =>
     <String, dynamic>{
-      'appFontSize': _$AppFontSizeEnumMap[instance.appFontSize]!,
+      'appFontSize': _$FontSizeEnumMap[instance.appFontSize]!,
       'appFontType': _$AppFontTypeEnumMap[instance.appFontType]!,
     };
 
-const _$AppFontSizeEnumMap = {
-  AppFontSize.small: 'small',
-  AppFontSize.medium: 'medium',
-  AppFontSize.large: 'large',
+const _$FontSizeEnumMap = {
+  FontSize.small: 'small',
+  FontSize.medium: 'medium',
+  FontSize.large: 'large',
 };
 
 const _$AppFontTypeEnumMap = {
