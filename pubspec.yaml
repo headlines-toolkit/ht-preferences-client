@@ -1,12 +1,24 @@
 name: ht_preferences_client
 description: Abstract client for managing user preferences for the headlines toolkit app.
-publish_to: none
 repository: https://github.com/headlines-toolkit/ht-preferences-client
+publish_to: none
 
 environment:
   sdk: ^3.7.0
 
+dependencies: 
+  equatable: ^2.0.7
+  ht_headlines_client:
+    git: 
+      url: https://github.com/headlines-toolkit/ht-headlines-client
+  json_annotation: ^4.9.0
+
+  ht_categories_client: any
+  ht_countries_client: any
+  ht_sources_client: any
 dev_dependencies:
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.4
   mocktail: ^1.0.4
   test: ^1.25.8
   very_good_analysis: ^7.0.0
