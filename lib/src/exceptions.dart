@@ -139,21 +139,21 @@ class FollowedEventCountriesUpdateException extends PreferenceUpdateException {
   FollowedEventCountriesUpdateException(super.message);
 }
 
-/// {@template article_reading_history_not_found_exception}
-/// Exception thrown when article reading history is not found.
+/// {@template headline_reading_history_not_found_exception}
+/// Exception thrown when headline reading history is not found.
 /// {@endtemplate}
-class ArticleReadingHistoryNotFoundException
+class HeadlineReadingHistoryNotFoundException
     extends PreferenceNotFoundException {
-  /// {@macro article_reading_history_not_found_exception}
-  ArticleReadingHistoryNotFoundException(super.message);
+  /// {@macro headline_reading_history_not_found_exception}
+  HeadlineReadingHistoryNotFoundException(super.message);
 }
 
-/// {@template article_reading_history_update_exception}
-/// Exception thrown when article reading history update fails.
+/// {@template headline_reading_history_update_exception}
+/// Exception thrown when headline reading history update fails.
 /// {@endtemplate}
-class ArticleReadingHistoryUpdateException extends PreferenceUpdateException {
-  /// {@macro article_reading_history_update_exception}
-  ArticleReadingHistoryUpdateException(super.message);
+class HeadlineReadingHistoryUpdateException extends PreferenceUpdateException {
+  /// {@macro headline_reading_history_update_exception}
+  HeadlineReadingHistoryUpdateException(super.message);
 }
 
 /// {@template feed_settings_not_found_exception}

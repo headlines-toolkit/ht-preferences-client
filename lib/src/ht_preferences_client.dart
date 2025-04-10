@@ -6,6 +6,7 @@ import 'package:ht_countries_client/ht_countries_client.dart' show Country;
 import 'package:ht_headlines_client/ht_headlines_client.dart' show Headline;
 import 'package:ht_preferences_client/src/exceptions.dart';
 import 'package:ht_preferences_client/src/models/models.dart';
+import 'package:ht_shared/ht_shared.dart' show PaginatedResponse;
 import 'package:ht_sources_client/ht_sources_client.dart' show Source;
 
 /// {@template ht_preferences_client}
@@ -48,17 +49,20 @@ abstract class HtPreferencesClient {
   /// Throws [ThemeSettingsUpdateException] if update fails.
   Future<void> setThemeSettings(ThemeSettings settings);
 
-  /// Gets the bookmarked headlines.
+  /// Gets the bookmarked headlines with pagination support.
+  ///
+  /// [cursor] is the identifier for the next page of results.
+  /// [limit] specifies the maximum number of headlines per page.
   ///
   /// Throws [BookmarkedHeadlinesNotFoundException] if not found.
-  /// Throws [BookmarkedHeadlinesUpdateException] if update fails.
-  Future<List<Headline>> getBookmarkedHeadlines();
+  /// Throws [BookmarkedHeadlinesUpdateException] if fetching fails.
+  Future<PaginatedResponse<Headline>> getBookmarkedHeadlines({
+    String? cursor,
+    int? limit,
+  });
 
-  /// Sets the bookmarked headlines.
-  ///
-  /// Throws [BookmarkedHeadlinesNotFoundException] if not found.
-  /// Throws [BookmarkedHeadlinesUpdateException] if update fails.
-  Future<void> setBookmarkedHeadlines(List<Headline> headlines);
+  // Removed setBookmarkedHeadlines as setting a full paginated list is unusual.
+  // Add/remove operations would typically handle modifications.
 
   /// Gets the followed sources.
   ///
@@ -96,17 +100,20 @@ abstract class HtPreferencesClient {
   /// Throws [FollowedEventCountriesUpdateException] if update fails.
   Future<void> setFollowedEventCountries(List<Country> countries);
 
-  /// Gets the article reading history.
+  /// Gets the headline reading history with pagination support.
   ///
-  /// Throws [ArticleReadingHistoryNotFoundException] if not found.
-  /// Throws [ArticleReadingHistoryUpdateException] if update fails.
-  Future<List<Headline>> getArticleReadingHistory();
+  /// [cursor] is the identifier for the next page of results.
+  /// [limit] specifies the maximum number of headlines per page.
+  ///
+  /// Throws [HeadlineReadingHistoryNotFoundException] if not found.
+  /// Throws [HeadlineReadingHistoryUpdateException] if fetching fails.
+  Future<PaginatedResponse<Headline>> getHeadlineReadingHistory({
+    String? cursor,
+    int? limit,
+  });
 
-  /// Sets the article reading history.
-  ///
-  /// Throws [ArticleReadingHistoryNotFoundException] if not found.
-  /// Throws [ArticleReadingHistoryUpdateException] if update fails.
-  Future<void> setArticleReadingHistory(List<Headline> headlines);
+  // Removed setHeadlineReadingHistory as setting a full paginated list is unusual.
+  // Add/remove operations would typically handle modifications.
 
   /// Gets the feed settings.
   ///

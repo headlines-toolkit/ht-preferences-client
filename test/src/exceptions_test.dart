@@ -178,9 +178,9 @@ void main() {
       });
     });
 
-    group('ArticleReadingHistory Exceptions', () {
-      test('ArticleReadingHistoryNotFoundException', () {
-        final exception = ArticleReadingHistoryNotFoundException(testMessage);
+    group('HeadlineReadingHistory Exceptions', () {
+      test('HeadlineReadingHistoryNotFoundException', () {
+        final exception = HeadlineReadingHistoryNotFoundException(testMessage);
         expect(exception, isA<PreferenceNotFoundException>());
         expect(exception.message, equals(testMessage));
         expect(
@@ -188,8 +188,8 @@ void main() {
           equals('PreferenceNotFoundException: $testMessage'),
         );
       });
-      test('ArticleReadingHistoryUpdateException', () {
-        final exception = ArticleReadingHistoryUpdateException(testMessage);
+      test('HeadlineReadingHistoryUpdateException', () {
+        final exception = HeadlineReadingHistoryUpdateException(testMessage);
         expect(exception, isA<PreferenceUpdateException>());
         expect(exception.message, equals(testMessage));
         expect(
