@@ -2,15 +2,15 @@ import 'package:ht_preferences_client/src/models/models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotificationPreferences', () {
+  group('NotificationSettings', () {
     // Sample data
     const sampleEnabled = true;
     const sampleCategoryNotifications = ['cat1', 'cat3'];
     const sampleSourceNotifications = ['srcB'];
     const sampleFollowedEventCountryIds = ['uk', 'us'];
 
-    // Sample NotificationPreferences instance
-    const notificationPreferences = NotificationPreferences(
+    // Sample NotificationSettings instance
+    const notificationSettings = NotificationSettings(
       enabled: sampleEnabled,
       categoryNotifications: sampleCategoryNotifications,
       sourceNotifications: sampleSourceNotifications,
@@ -18,7 +18,7 @@ void main() {
     );
 
     // Sample JSON map
-    final notificationPreferencesJson = {
+    final notificationSettingsJson = {
       'enabled': sampleEnabled,
       'categoryNotifications': sampleCategoryNotifications,
       'sourceNotifications': sampleSourceNotifications,
@@ -27,8 +27,8 @@ void main() {
 
     test('can be instantiated with default empty lists', () {
       expect(
-        const NotificationPreferences(enabled: false),
-        isA<NotificationPreferences>()
+        const NotificationSettings(enabled: false),
+        isA<NotificationSettings>()
             .having((p) => p.enabled, 'enabled', false)
             .having(
               (p) => p.categoryNotifications,
@@ -50,7 +50,7 @@ void main() {
 
     test('can be instantiated with provided lists', () {
       expect(
-        const NotificationPreferences(
+        const NotificationSettings(
           enabled: true,
           categoryNotifications: ['cat1'],
           sourceNotifications: ['srcA'],
@@ -63,9 +63,9 @@ void main() {
     test('supports value equality', () {
       // Test equality with the same instance
       expect(
-        notificationPreferences,
+        notificationSettings,
         equals(
-          const NotificationPreferences(
+          const NotificationSettings(
             enabled: sampleEnabled,
             categoryNotifications: sampleCategoryNotifications,
             sourceNotifications: sampleSourceNotifications,
@@ -76,10 +76,10 @@ void main() {
 
       // Test inequality with different enabled status
       expect(
-        notificationPreferences,
+        notificationSettings,
         isNot(
           equals(
-            const NotificationPreferences(
+            const NotificationSettings(
               enabled: !sampleEnabled,
               categoryNotifications: sampleCategoryNotifications,
               sourceNotifications: sampleSourceNotifications,
@@ -91,10 +91,10 @@ void main() {
 
       // Test inequality with different category list
       expect(
-        notificationPreferences,
+        notificationSettings,
         isNot(
           equals(
-            const NotificationPreferences(
+            const NotificationSettings(
               enabled: sampleEnabled,
               categoryNotifications: ['cat1'], // Different list
               sourceNotifications: sampleSourceNotifications,
@@ -106,10 +106,10 @@ void main() {
 
       // Test inequality with different source list
       expect(
-        notificationPreferences,
+        notificationSettings,
         isNot(
           equals(
-            const NotificationPreferences(
+            const NotificationSettings(
               enabled: sampleEnabled,
               categoryNotifications: sampleCategoryNotifications,
               sourceNotifications: ['srcC'], // Different list
@@ -121,10 +121,10 @@ void main() {
 
       // Test inequality with different country list
       expect(
-        notificationPreferences,
+        notificationSettings,
         isNot(
           equals(
-            const NotificationPreferences(
+            const NotificationSettings(
               enabled: sampleEnabled,
               categoryNotifications: sampleCategoryNotifications,
               sourceNotifications: sampleSourceNotifications,
@@ -137,7 +137,7 @@ void main() {
 
     test('props are correct', () {
       expect(
-        notificationPreferences.props,
+        notificationSettings.props,
         equals([
           sampleEnabled,
           sampleCategoryNotifications,
@@ -150,8 +150,8 @@ void main() {
     group('fromJson', () {
       test('works correctly with full data', () {
         expect(
-          NotificationPreferences.fromJson(notificationPreferencesJson),
-          equals(notificationPreferences),
+          NotificationSettings.fromJson(notificationSettingsJson),
+          equals(notificationSettings),
         );
       });
 
@@ -163,16 +163,16 @@ void main() {
           'followedEventCountryIds': <String>[],
         };
         expect(
-          NotificationPreferences.fromJson(jsonWithEmptyLists),
-          equals(const NotificationPreferences(enabled: true)),
+          NotificationSettings.fromJson(jsonWithEmptyLists),
+          equals(const NotificationSettings(enabled: true)),
         );
       });
 
       test('works correctly when lists are missing (should use defaults)', () {
         final jsonWithMissingLists = {'enabled': true};
         expect(
-          NotificationPreferences.fromJson(jsonWithMissingLists),
-          equals(const NotificationPreferences(enabled: true)),
+          NotificationSettings.fromJson(jsonWithMissingLists),
+          equals(const NotificationSettings(enabled: true)),
         );
       });
 
@@ -182,14 +182,11 @@ void main() {
 
     group('toJson', () {
       test('works correctly with full data', () {
-        expect(
-          notificationPreferences.toJson(),
-          equals(notificationPreferencesJson),
-        );
+        expect(notificationSettings.toJson(), equals(notificationSettingsJson));
       });
 
       test('works correctly with default empty lists', () {
-        const prefsWithEmptyLists = NotificationPreferences(enabled: true);
+        const prefsWithEmptyLists = NotificationSettings(enabled: true);
         expect(
           prefsWithEmptyLists.toJson(),
           equals({

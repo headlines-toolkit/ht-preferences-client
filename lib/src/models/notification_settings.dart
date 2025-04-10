@@ -4,27 +4,27 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'notification_preferences.g.dart';
+part 'notification_settings.g.dart';
 
-/// {@template notification_preferences}
-/// Represents the user's notification preferences.
+/// {@template notification_settings}
+/// Represents the user's notification settings.
 ///
 /// Stores lists of followed category, source, and country IDs for notifications.
 /// Assumes notifications are primarily for breaking news within these follows.
 /// {@endtemplate}
 @JsonSerializable()
-class NotificationPreferences extends Equatable {
-  /// {@macro notification_preferences}
-  const NotificationPreferences({
+class NotificationSettings extends Equatable {
+  /// {@macro notification_settings}
+  const NotificationSettings({
     required this.enabled,
     this.categoryNotifications = const [],
     this.sourceNotifications = const [],
     this.followedEventCountryIds = const [],
   });
 
-  /// Creates a [NotificationPreferences] instance from a JSON map.
-  factory NotificationPreferences.fromJson(Map<String, dynamic> json) =>
-      _$NotificationPreferencesFromJson(json);
+  /// Creates a [NotificationSettings] instance from a JSON map.
+  factory NotificationSettings.fromJson(Map<String, dynamic> json) =>
+      _$NotificationSettingsFromJson(json);
 
   /// Whether notifications are enabled globally.
   final bool enabled;
@@ -38,8 +38,8 @@ class NotificationPreferences extends Equatable {
   /// A list of country IDs the user follows for event notifications.
   final List<String> followedEventCountryIds;
 
-  /// Converts this [NotificationPreferences] instance to a JSON map.
-  Map<String, dynamic> toJson() => _$NotificationPreferencesToJson(this);
+  /// Converts this [NotificationSettings] instance to a JSON map.
+  Map<String, dynamic> toJson() => _$NotificationSettingsToJson(this);
 
   @override
   List<Object?> get props => [

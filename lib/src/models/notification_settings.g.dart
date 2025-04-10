@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notification_preferences.dart';
+part of 'notification_settings.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationPreferences _$NotificationPreferencesFromJson(
+NotificationSettings _$NotificationSettingsFromJson(
   Map<String, dynamic> json,
-) => NotificationPreferences(
+) => NotificationSettings(
   enabled: json['enabled'] as bool,
   categoryNotifications:
       (json['categoryNotifications'] as List<dynamic>?)
@@ -27,8 +27,8 @@ NotificationPreferences _$NotificationPreferencesFromJson(
       const [],
 );
 
-Map<String, dynamic> _$NotificationPreferencesToJson(
-  NotificationPreferences instance,
+Map<String, dynamic> _$NotificationSettingsToJson(
+  NotificationSettings instance,
 ) => <String, dynamic>{
   'enabled': instance.enabled,
   'categoryNotifications': instance.categoryNotifications,

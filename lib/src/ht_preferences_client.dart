@@ -66,8 +66,8 @@ abstract class HtPreferencesClient {
   Future<void> setFeedSettings(FeedSettings settings);
 
   /// Gets the notification preferences.
-  Future<NotificationPreferences> getNotificationPreferences();
+  Future<NotificationSettings> getNotificationPreferences();
 
   /// Sets the notification preferences.
-  Future<void> setNotificationPreferences(NotificationPreferences preferences);
+  Future<void> setNotificationPreferences(NotificationSettings preferences);
 }
