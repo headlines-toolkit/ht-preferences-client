@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:ht_preferences_client/src/enums/enums.dart';
+import 'package:ht_preferences_client/src/enums/app_font_type.dart';
 import 'package:ht_preferences_client/src/enums/font_size.dart';
 import 'package:json_annotation/json_annotation.dart';
 

@@ -1,4 +1,4 @@
-import 'package:ht_preferences_client/src/enums/enums.dart';
+import 'package:ht_preferences_client/src/enums/app_font_type.dart';
 import 'package:ht_preferences_client/src/enums/font_size.dart';
 import 'package:ht_preferences_client/src/models/models.dart';
 import 'package:test/test.dart';
