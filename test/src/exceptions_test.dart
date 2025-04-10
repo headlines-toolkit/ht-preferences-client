@@ -220,9 +220,9 @@ void main() {
       });
     });
 
-    group('NotificationPreferences Exceptions', () {
-      test('NotificationPreferencesNotFoundException', () {
-        final exception = NotificationPreferencesNotFoundException(testMessage);
+    group('NotificationSettings Exceptions', () {
+      test('NotificationSettingsNotFoundException', () {
+        final exception = NotificationSettingsNotFoundException(testMessage);
         expect(exception, isA<PreferenceNotFoundException>());
         expect(exception.message, equals(testMessage));
         expect(
@@ -230,8 +230,8 @@ void main() {
           equals('PreferenceNotFoundException: $testMessage'),
         );
       });
-      test('NotificationPreferencesUpdateException', () {
-        final exception = NotificationPreferencesUpdateException(testMessage);
+      test('NotificationSettingsUpdateException', () {
+        final exception = NotificationSettingsUpdateException(testMessage);
         expect(exception, isA<PreferenceUpdateException>());
         expect(exception.message, equals(testMessage));
         expect(

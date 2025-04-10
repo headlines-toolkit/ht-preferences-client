@@ -172,19 +172,19 @@ class FeedSettingsUpdateException extends PreferenceUpdateException {
   FeedSettingsUpdateException(super.message);
 }
 
-/// {@template notification_preferences_not_found_exception}
-/// Exception thrown when notification preferences are not found.
+/// {@template notification_settings_not_found_exception}
+/// Exception thrown when notification settings are not found.
 /// {@endtemplate}
-class NotificationPreferencesNotFoundException
+class NotificationSettingsNotFoundException
     extends PreferenceNotFoundException {
-  /// {@macro notification_preferences_not_found_exception}
-  NotificationPreferencesNotFoundException(super.message);
+  /// {@macro notification_settings_not_found_exception}
+  NotificationSettingsNotFoundException(super.message);
 }
 
-/// {@template notification_preferences_update_exception}
-/// Exception thrown when notification preferences update fails.
+/// {@template notification_settings_update_exception}
+/// Exception thrown when notification settings update fails.
 /// {@endtemplate}
-class NotificationPreferencesUpdateException extends PreferenceUpdateException {
-  /// {@macro notification_preferences_update_exception}
-  NotificationPreferencesUpdateException(super.message);
+class NotificationSettingsUpdateException extends PreferenceUpdateException {
+  /// {@macro notification_settings_update_exception}
+  NotificationSettingsUpdateException(super.message);
 }

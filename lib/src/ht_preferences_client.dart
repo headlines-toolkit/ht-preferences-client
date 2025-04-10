@@ -14,121 +14,121 @@ import 'package:ht_sources_client/ht_sources_client.dart' show Source;
 abstract class HtPreferencesClient {
   /// Gets the app settings.
   ///
-  /// Throws [AppSettingsNotFoundException] if the settings are not found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [AppSettingsNotFoundException] if not found.
+  /// Throws [AppSettingsUpdateException] if update fails.
   Future<AppSettings> getAppSettings();
 
   /// Sets the app settings.
   ///
-  /// Throws [AppSettingsUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [AppSettingsNotFoundException] if not found.
+  /// Throws [AppSettingsUpdateException] if update fails.
   Future<void> setAppSettings(AppSettings settings);
 
   /// Gets the article settings.
   ///
-  /// Throws [ArticleSettingsNotFoundException] if the settings are not found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [ArticleSettingsNotFoundException] if not found.
+  /// Throws [ArticleSettingsUpdateException] if update fails.
   Future<ArticleSettings> getArticleSettings();
 
   /// Sets the article settings.
   ///
-  /// Throws [ArticleSettingsUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [ArticleSettingsNotFoundException] if not found.
+  /// Throws [ArticleSettingsUpdateException] if update fails.
   Future<void> setArticleSettings(ArticleSettings settings);
 
   /// Gets the theme settings.
   ///
-  /// Throws [ThemeSettingsNotFoundException] if the settings are not found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [ThemeSettingsNotFoundException] if not found.
+  /// Throws [ThemeSettingsUpdateException] if update fails.
   Future<ThemeSettings> getThemeSettings();
 
   /// Sets the theme settings.
   ///
-  /// Throws [ThemeSettingsUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [ThemeSettingsNotFoundException] if not found.
+  /// Throws [ThemeSettingsUpdateException] if update fails.
   Future<void> setThemeSettings(ThemeSettings settings);
 
   /// Gets the bookmarked headlines.
   ///
-  /// Throws [BookmarkedHeadlinesNotFoundException] if none are found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [BookmarkedHeadlinesNotFoundException] if not found.
+  /// Throws [BookmarkedHeadlinesUpdateException] if update fails.
   Future<List<Headline>> getBookmarkedHeadlines();
 
   /// Sets the bookmarked headlines.
   ///
-  /// Throws [BookmarkedHeadlinesUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [BookmarkedHeadlinesNotFoundException] if not found.
+  /// Throws [BookmarkedHeadlinesUpdateException] if update fails.
   Future<void> setBookmarkedHeadlines(List<Headline> headlines);
 
   /// Gets the followed sources.
   ///
-  /// Throws [FollowedSourcesNotFoundException] if none are found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [FollowedSourcesNotFoundException] if not found.
+  /// Throws [FollowedSourcesUpdateException] if update fails.
   Future<List<Source>> getFollowedSources();
 
   /// Sets the followed sources.
   ///
-  /// Throws [FollowedSourcesUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [FollowedSourcesNotFoundException] if not found.
+  /// Throws [FollowedSourcesUpdateException] if update fails.
   Future<void> setFollowedSources(List<Source> sources);
 
   /// Gets the followed categories.
   ///
-  /// Throws [FollowedCategoriesNotFoundException] if none are found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [FollowedCategoriesNotFoundException] if not found.
+  /// Throws [FollowedCategoriesUpdateException] if update fails.
   Future<List<Category>> getFollowedCategories();
 
   /// Sets the followed categories.
   ///
-  /// Throws [FollowedCategoriesUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [FollowedCategoriesNotFoundException] if not found.
+  /// Throws [FollowedCategoriesUpdateException] if update fails.
   Future<void> setFollowedCategories(List<Category> categories);
 
   /// Gets the followed event countries.
   ///
-  /// Throws [FollowedEventCountriesNotFoundException] if none are found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [FollowedEventCountriesNotFoundException] if not found.
+  /// Throws [FollowedEventCountriesUpdateException] if update fails.
   Future<List<Country>> getFollowedEventCountries();
 
   /// Sets the followed event countries.
   ///
-  /// Throws [FollowedEventCountriesUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [FollowedEventCountriesNotFoundException] if not found.
+  /// Throws [FollowedEventCountriesUpdateException] if update fails.
   Future<void> setFollowedEventCountries(List<Country> countries);
 
   /// Gets the article reading history.
   ///
-  /// Throws [ArticleReadingHistoryNotFoundException] if none is found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [ArticleReadingHistoryNotFoundException] if not found.
+  /// Throws [ArticleReadingHistoryUpdateException] if update fails.
   Future<List<Headline>> getArticleReadingHistory();
 
   /// Sets the article reading history.
   ///
-  /// Throws [ArticleReadingHistoryUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [ArticleReadingHistoryNotFoundException] if not found.
+  /// Throws [ArticleReadingHistoryUpdateException] if update fails.
   Future<void> setArticleReadingHistory(List<Headline> headlines);
 
   /// Gets the feed settings.
   ///
-  /// Throws [FeedSettingsNotFoundException] if the settings are not found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
+  /// Throws [FeedSettingsNotFoundException] if not found.
+  /// Throws [FeedSettingsUpdateException] if update fails.
   Future<FeedSettings> getFeedSettings();
 
   /// Sets the feed settings.
   ///
-  /// Throws [FeedSettingsUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [FeedSettingsNotFoundException] if not found.
+  /// Throws [FeedSettingsUpdateException] if update fails.
   Future<void> setFeedSettings(FeedSettings settings);
 
   /// Gets the notification preferences.
   ///
-  /// Throws [NotificationPreferencesNotFoundException] if the preferences are not found.
-  /// Throws [PreferenceNotFoundException] for general not-found errors.
-  Future<NotificationSettings> getNotificationPreferences();
+  /// Throws [NotificationSettingsNotFoundException] if not found.
+  /// Throws [NotificationSettingsUpdateException] if update fails.
+  Future<NotificationSettings> getNotificationSettings();
 
   /// Sets the notification preferences.
   ///
-  /// Throws [NotificationPreferencesUpdateException] if the update fails.
-  /// Throws [PreferenceUpdateException] for general update errors.
+  /// Throws [NotificationSettingsNotFoundException] if not found.
+  /// Throws [NotificationSettingsUpdateException] if update fails.
   Future<void> setNotificationPreferences(NotificationSettings preferences);
 }
