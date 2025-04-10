@@ -28,7 +28,7 @@ This package defines the `HtPreferencesClient` interface for managing the follow
 *   Article Settings (`ArticleSettings`): Settings related to article display, such as font size.
 *   Theme Settings (`ThemeSettings`): Settings for the app's theme (e.g., light/dark mode, theme name).
 *   Feed Settings (`FeedSettings`): Settings related to the news feed (e.g., list tile type).
-*   Notification Preferences (`NotificationPreferences`): Settings for enabling/disabling notifications and configuring notification preferences for specific categories and sources.
+*   Notification Settings (`NotificationSettings`): Settings for enabling/disabling notifications and configuring notification settings for specific categories, sources or countries.
 *   Bookmarked Headlines (`List<Headline>`): A list of bookmarked news headlines.
 *   Followed Sources (`List<Source>`): A list of news sources the user follows.
 *   Followed Categories (`List<Category>`): A list of news categories the user follows.
