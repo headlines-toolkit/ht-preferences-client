@@ -10,12 +10,21 @@ NotificationPreferences _$NotificationPreferencesFromJson(
   Map<String, dynamic> json,
 ) => NotificationPreferences(
   enabled: json['enabled'] as bool,
-  categoryNotifications: Map<String, bool>.from(
-    json['categoryNotifications'] as Map,
-  ),
-  sourceNotifications: Map<String, bool>.from(
-    json['sourceNotifications'] as Map,
-  ),
+  categoryNotifications:
+      (json['categoryNotifications'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  sourceNotifications:
+      (json['sourceNotifications'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  followedEventCountryIds:
+      (json['followedEventCountryIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$NotificationPreferencesToJson(
@@ -24,4 +33,5 @@ Map<String, dynamic> _$NotificationPreferencesToJson(
   'enabled': instance.enabled,
   'categoryNotifications': instance.categoryNotifications,
   'sourceNotifications': instance.sourceNotifications,
+  'followedEventCountryIds': instance.followedEventCountryIds,
 };
