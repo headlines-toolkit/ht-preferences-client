@@ -17,9 +17,6 @@ dependencies:
   ht_headlines_client:
     git:
       url: https://github.com/headlines-toolkit/ht-headlines-client
-  ht_shared:
-    git:
-      url: https://github.com/headlines-toolkit/ht-shared.git
   ht_sources_client:
     git:
       url: https://github.com/headlines-toolkit/ht-sources-client.git

@@ -6,7 +6,6 @@ import 'package:ht_countries_client/ht_countries_client.dart' show Country;
 import 'package:ht_headlines_client/ht_headlines_client.dart' show Headline;
 import 'package:ht_preferences_client/src/exceptions.dart';
 import 'package:ht_preferences_client/src/models/models.dart';
-import 'package:ht_shared/ht_shared.dart' show PaginatedResponse;
 import 'package:ht_sources_client/ht_sources_client.dart' show Source;
 
 /// {@template ht_preferences_client}
@@ -49,20 +48,24 @@ abstract class HtPreferencesClient {
   /// Throws [ThemeSettingsUpdateException] if update fails.
   Future<void> setThemeSettings(ThemeSettings settings);
 
-  /// Gets the bookmarked headlines with pagination support.
+  /// Gets the complete list of bookmarked headlines.
   ///
-  /// [cursor] is the identifier for the next page of results.
-  /// [limit] specifies the maximum number of headlines per page.
-  ///
-  /// Throws [BookmarkedHeadlinesNotFoundException] if not found.
-  /// Throws [BookmarkedHeadlinesUpdateException] if fetching fails.
-  Future<PaginatedResponse<Headline>> getBookmarkedHeadlines({
-    String? cursor,
-    int? limit,
-  });
+  /// Throws [BookmarkedHeadlinesNotFoundException] if the user's bookmarks
+  /// cannot be found (e.g., initial state or data corruption).
+  Future<List<Headline>> getBookmarkedHeadlines();
 
-  // Removed setBookmarkedHeadlines as setting a full paginated list is unusual.
-  // Add/remove operations would typically handle modifications.
+  /// Adds a headline to the user's bookmarks.
+  ///
+  /// [headline] The headline object to bookmark.
+  ///
+  /// Throws [BookmarkedHeadlinesUpdateException] if fetching the list fails.
+  Future<void> addBookmarkedHeadline(Headline headline);
+
+  /// Removes a headline from the user's bookmarks using its ID.
+  ///
+  /// [headlineId] The unique identifier of the headline to remove.
+  /// Throws [BookmarkedHeadlinesUpdateException] if adding the bookmark fails.
+  Future<void> removeBookmarkedHeadline(String headlineId);
 
   /// Gets the followed sources.
   ///
@@ -100,20 +103,25 @@ abstract class HtPreferencesClient {
   /// Throws [FollowedEventCountriesUpdateException] if update fails.
   Future<void> setFollowedEventCountries(List<Country> countries);
 
-  /// Gets the headline reading history with pagination support.
+  /// Gets the complete headline reading history.
   ///
-  /// [cursor] is the identifier for the next page of results.
-  /// [limit] specifies the maximum number of headlines per page.
-  ///
-  /// Throws [HeadlineReadingHistoryNotFoundException] if not found.
-  /// Throws [HeadlineReadingHistoryUpdateException] if fetching fails.
-  Future<PaginatedResponse<Headline>> getHeadlineReadingHistory({
-    String? cursor,
-    int? limit,
-  });
+  /// Throws [HeadlineReadingHistoryNotFoundException] if the user's reading
+  /// history cannot be found.
+  Future<List<Headline>> getHeadlineReadingHistory();
 
-  // Removed setHeadlineReadingHistory as setting a full paginated list is unusual.
-  // Add/remove operations would typically handle modifications.
+  /// Adds a headline to the user's reading history.
+  ///
+  /// [headline] The headline object to add to the history.
+  ///
+  /// Throws [HeadlineReadingHistoryUpdateException] if fetching the history fails.
+  Future<void> addHeadlineToHistory(Headline headline);
+
+  /// Removes a headline from the user's reading history using its ID.
+  ///
+  /// [headlineId] The unique identifier of the headline to remove from history.
+  ///
+  /// Throws [HeadlineReadingHistoryUpdateException] if adding to history fails.
+  Future<void> removeHeadlineToHistory(String headlineId);
 
   /// Gets the feed settings.
   ///
