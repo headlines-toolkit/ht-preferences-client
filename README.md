@@ -39,7 +39,6 @@ This package also includes:
 
 *   Data Models (under `lib/src/models/`): Classes representing the different preference types (e.g., `AppSettings`, `ThemeSettings`).
 *   Enums (under `lib/src/enums/`): Enumerations defining the possible values for certain settings (e.g., `AppThemeMode`, `FontSize`).
-*   Custom Exceptions (in `lib/src/exceptions.dart`): Exceptions that can be thrown when retrieving or updating preferences.
 
 ## Usage
 
