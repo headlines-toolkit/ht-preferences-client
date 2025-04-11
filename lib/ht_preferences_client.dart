@@ -7,6 +7,5 @@ export 'package:ht_headlines_client/ht_headlines_client.dart' show Headline;
 export 'package:ht_sources_client/ht_sources_client.dart' show Source;
 
 export 'src/enums/enums.dart';
-export 'src/exceptions.dart';
 export 'src/ht_preferences_client.dart';
 export 'src/models/models.dart';
