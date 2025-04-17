@@ -1,5 +1,9 @@
 # ht_preferences_client
 
+![coverage: percentage](https://img.shields.io/badge/coverage-100-green)
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis) 
+[![License: PolyForm Free Trial](https://img.shields.io/badge/License-PolyForm%20Free%20Trial-blue)](https://polyformproject.org/licenses/free-trial/1.0.0)
+
 Abstract client for managing user preferences for the headlines toolkit app.
 
 ## Description
@@ -106,4 +110,4 @@ Please file any issues, bugs, or feature requests at the [issue tracker](https:/
 
 ## License
 
-See the [LICENSE](LICENSE) file for details.
+This package is licensed under the [PolyForm Free Trial](LICENSE). See the [LICENSE](LICENSE) file for details.

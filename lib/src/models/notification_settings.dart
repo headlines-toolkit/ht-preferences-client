@@ -2,9 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
-
-part 'notification_settings.g.dart';
+import 'package:meta/meta.dart';
 
 /// {@template notification_settings}
 /// Represents the user's notification settings.
@@ -12,7 +10,7 @@ part 'notification_settings.g.dart';
 /// Stores lists of followed category, source, and country IDs for notifications.
 /// Assumes notifications are primarily for breaking news within these follows.
 /// {@endtemplate}
-@JsonSerializable()
+@immutable
 class NotificationSettings extends Equatable {
   /// {@macro notification_settings}
   const NotificationSettings({
@@ -23,8 +21,40 @@ class NotificationSettings extends Equatable {
   });
 
   /// Creates a [NotificationSettings] instance from a JSON map.
-  factory NotificationSettings.fromJson(Map<String, dynamic> json) =>
-      _$NotificationSettingsFromJson(json);
+  ///
+  /// Throws a [FormatException] if the JSON is invalid.
+  factory NotificationSettings.fromJson(Map<String, dynamic> json) {
+    final enabled = json['enabled'] as bool?;
+    final categoryNotificationsRaw = json['categoryNotifications'] as List?;
+    final sourceNotificationsRaw = json['sourceNotifications'] as List?;
+    final followedEventCountryIdsRaw = json['followedEventCountryIds'] as List?;
+
+    if (enabled == null) {
+      throw const FormatException(
+        'Missing required field "enabled" in NotificationSettings JSON.',
+      );
+    }
+
+    // Safely cast lists, defaulting to empty if null or invalid type
+    final categoryNotifications =
+        categoryNotificationsRaw?.whereType<String>().toList(growable: false) ??
+        const <String>[];
+    final sourceNotifications =
+        sourceNotificationsRaw?.whereType<String>().toList(growable: false) ??
+        const <String>[];
+    final followedEventCountryIds =
+        followedEventCountryIdsRaw?.whereType<String>().toList(
+          growable: false,
+        ) ??
+        const <String>[];
+
+    return NotificationSettings(
+      enabled: enabled,
+      categoryNotifications: categoryNotifications,
+      sourceNotifications: sourceNotifications,
+      followedEventCountryIds: followedEventCountryIds,
+    );
+  }
 
   /// Whether notifications are enabled globally.
   final bool enabled;
@@ -39,7 +69,14 @@ class NotificationSettings extends Equatable {
   final List<String> followedEventCountryIds;
 
   /// Converts this [NotificationSettings] instance to a JSON map.
-  Map<String, dynamic> toJson() => _$NotificationSettingsToJson(this);
+  Map<String, dynamic> toJson() {
+    return {
+      'enabled': enabled,
+      'categoryNotifications': categoryNotifications,
+      'sourceNotifications': sourceNotifications,
+      'followedEventCountryIds': followedEventCountryIds,
+    };
+  }
 
   @override
   List<Object?> get props => [

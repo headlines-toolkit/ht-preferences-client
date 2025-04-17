@@ -20,6 +20,7 @@ dependencies:
   ht_sources_client:
     git:
       url: https://github.com/headlines-toolkit/ht-sources-client.git
+  meta: ^1.16.0
 
 dev_dependencies:
   mocktail: ^1.0.4
